@@ -9,7 +9,7 @@ document.getElementById("solved").addEventListener("click", () => {
       },
       args: [tabId],
     });
-
+    const API_URL = 'https://esuejqaspbhebyjoycoi.supabase.co/functions/v1/validate-and-update';
     chrome.tabs.get(tabId, (tab) => {
       if (tab.url.includes("https://leetcode.com/problems/")) {
         fetch("https://leetcode.com/graphql/", {
@@ -47,9 +47,10 @@ document.getElementById("solved").addEventListener("click", () => {
 
             if (data.data.userStatus.isSignedIn === true) {
 
-              fetch("API_ENDPOINT", {
+              fetch(API_URL, {
                 method: "POST",
                 headers: {
+                  "Authorization": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZS1kZW1vIiwicm9sZSI6ImFub24iLCJleHAiOjE5ODM4MTI5OTZ9.CRXP1A7WOeoJeXxjNni43kdQwgnWNReilDMblYTn_I0",
                   "Content-Type": "application/json",
                 },
                 body: JSON.stringify({
@@ -57,8 +58,17 @@ document.getElementById("solved").addEventListener("click", () => {
                   problemUrl: tab.url,
                 }),
               })
-                .then((res) => res.json())
+                .then((res) => {
+                  if (res.status === 400) {
+                    alert("This problem is already solved by you.");
+                  }
+
+                  return res.json()})
                 .then((data) => {
+                  if(data.message === "error"){
+                    alert("Some error occured. Please try again later.");
+                  }
+                  log(tabId, "invoked");
                   log(tabId, data);
                 })
                 .catch(console.error);
