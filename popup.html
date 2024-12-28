@@ -3,11 +3,42 @@
 <head>
   <title>My Extension Popup</title>
   <style>
-    body { font-family: Arial, sans-serif; }
+    body { 
+      font-family: Arial, sans-serif; 
+      margin: 20px;
+      width: 200px;
+    }
+    button {
+      background-color: #4CAF50;
+      color: white;
+      padding: 10px 20px;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+    button:hover {
+      background-color: #45a049;
+    }
+    button.loading {
+      background-color: #ccc;
+      cursor: not-allowed;
+    }
+    #server-message {
+      margin-top: 20px;
+      padding: 10px;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+      background-color: #f9f9f9;
+      color: #333;
+      font-size: 14px;
+      max-height: 200px; /* Limit the height of the message box */
+      overflow-y: auto; /* Add vertical scrollbar */
+    }
   </style>
 </head>
 <body>
   <button id="solved">Solved!</button>
+  <p id="server-message">Don't have any message</p>
   <script src="popup.js"></script>
 </body>
 </html>
