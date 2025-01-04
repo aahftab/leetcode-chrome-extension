@@ -15,6 +15,8 @@
       border: none;
       border-radius: 5px;
       cursor: pointer;
+      width: 100%;
+      margin-bottom: 10px;
     }
     button:hover {
       background-color: #45a049;
@@ -31,14 +33,47 @@
       background-color: #f9f9f9;
       color: #333;
       font-size: 14px;
-      max-height: 200px; /* Limit the height of the message box */
-      overflow-y: auto; /* Add vertical scrollbar */
+      max-height: 200px;
+      overflow-y: auto;
+    }
+    .dashboard-link {
+      display: block;
+      text-align: center;
+      margin-top: 15px;
+      color: #4CAF50;
+      text-decoration: none;
+      padding: 8px;
+      border: 1px solid #4CAF50;
+      border-radius: 5px;
+      transition: all 0.3s ease;
+    }
+    .dashboard-link:hover {
+      background-color: #4CAF50;
+      color: white;
+    }
+    
+    .issue-link {
+      display: block;
+      text-align: center;
+      margin-top: 10px;
+      color: #666;
+      text-decoration: none;
+      padding: 8px;
+      border: 1px solid #666;
+      border-radius: 5px;
+      transition: all 0.3s ease;
+    }
+    .issue-link:hover {
+      background-color: #666;
+      color: white;
     }
   </style>
 </head>
 <body>
-  <button id="solved">Solved!</button>
+  <button id="submit">Mark as Solved!</button>
   <p id="server-message">Don't have any message</p>
+  <a href="https://leetcode-community-dashboard.vercel.app/" class="dashboard-link" target="_blank">View Dashboard</a>
+  <a href="https://github.com/aahftab/leetcode-chrome-extension/issues" class="issue-link" target="_blank">Report Issue</a>
   <script src="popup.js"></script>
 </body>
 </html>

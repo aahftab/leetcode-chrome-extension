@@ -1,16 +1,8 @@
-document.getElementById("solved").addEventListener("click", () => {
+document.getElementById("submit").addEventListener("click", () => {
   disableSubmitButton();
 
   chrome.tabs.query({ active: true, currentWindow: true }, (tabs) => {
     const tabId = tabs[0].id;
-    // chrome.scripting.executeScript({
-    //   target: { tabId: tabId },
-    //   function: (tabId) => {
-    //     document.body.style.backgroundColor = "lightblue";
-    //     console.log("Tab ID:", tabId);
-    //   },
-    //   args: [tabId],
-    // });
     // const API_URL = "https://esuejqaspbhebyjoycoi.supabase.co/functions/v1/validate-and-update";
     const API_URL = "http://127.0.0.1:54321/functions/v1/validate-and-update";
     chrome.tabs.get(tabId, (tab) => {
@@ -97,15 +89,15 @@ function serverMessage(message) {
 }
 
 function disableSubmitButton() {
-  const button = document.getElementById("solved");
+  const button = document.getElementById("submit");
   button.disabled = true;
   button.innerText = "Please wait...";
   button.classList.add("loading");
 }
 
 function enableSubmitButton() {
-  const button = document.getElementById("solved");
+  const button = document.getElementById("submit");
   button.disabled = false;
-  button.innerText = "Submit";
+  button.innerText = "Mark as Solved!";
   button.classList.remove("loading");
 }
