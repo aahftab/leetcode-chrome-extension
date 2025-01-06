@@ -3,8 +3,8 @@ document.getElementById("submit").addEventListener("click", () => {
 
   chrome.tabs.query({ active: true, currentWindow: true }, (tabs) => {
     const tabId = tabs[0].id;
-    // const API_URL = "https://esuejqaspbhebyjoycoi.supabase.co/functions/v1/validate-and-update";
-    const API_URL = "http://127.0.0.1:54321/functions/v1/validate-and-update";
+    const API_URL = "https://esuejqaspbhebyjoycoi.supabase.co/functions/v1/validate-and-update";
+    // const API_URL = "http://127.0.0.1:54321/functions/v1/validate-and-update";
     chrome.tabs.get(tabId, (tab) => {
       if (tab.url.includes("https://leetcode.com/problems/")) {
         fetch("https://leetcode.com/graphql/", {
